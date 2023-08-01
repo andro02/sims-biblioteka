@@ -37,7 +37,7 @@ namespace Biblioteka.Core.Users.Models
         }
 
         public override string ToString()
-        {
+    {
             return $"{this.UserType} {this.Username} {this.Password} {this.LibraryBranchId}";
         }
     }

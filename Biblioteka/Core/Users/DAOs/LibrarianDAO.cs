@@ -59,7 +59,7 @@ namespace Biblioteka.Core.Users.DAOs
         public void NotifyObservers()
         {
             foreach (var observer in _observers)
-            {
+    {
                 observer.Update();
             }
         }
