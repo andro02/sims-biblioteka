@@ -16,6 +16,7 @@ namespace Biblioteka.Core.Users.Models
 
         public Client() : base()
         {
+            this.UserType = UserType.Client;
             this.ClientType = ClientType.Adult;
         }
 
@@ -32,6 +33,7 @@ namespace Biblioteka.Core.Users.Models
 
         public override void FromCSV(string[] values)
         {
+            this.UserType = UserType.Client;
             this.Username = values[1];
             this.Password = values[2];
             Enum.TryParse<ClientType>(values[3], out ClientType clientType);

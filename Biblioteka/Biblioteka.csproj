@@ -57,12 +57,38 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Books\Controllers\BookController.cs" />
+    <Compile Include="Core\Books\Controllers\BookCopyController.cs" />
+    <Compile Include="Core\Books\DAOs\BookCopyDAO.cs" />
     <Compile Include="Core\Books\DAOs\BookDAO.cs" />
     <Compile Include="Core\Books\Models\Book.cs" />
+    <Compile Include="Core\Books\Models\BookCopy.cs" />
+    <Compile Include="Core\Books\Storages\BookCopyStorage.cs" />
     <Compile Include="Core\Books\Storages\BookStorage.cs" />
+    <Compile Include="Core\Libraries\Controllers\LibraryBranchController.cs" />
+    <Compile Include="Core\Libraries\Controllers\LibraryController.cs" />
+    <Compile Include="Core\Libraries\Controllers\MembershipCardController.cs" />
+    <Compile Include="Core\Libraries\DAOs\LibraryBranchDAO.cs" />
+    <Compile Include="Core\Libraries\DAOs\LibraryDAO.cs" />
+    <Compile Include="Core\Libraries\DAOs\MembershipCardDAO.cs" />
+    <Compile Include="Core\Libraries\Models\Library.cs" />
+    <Compile Include="Core\Libraries\Models\LibraryBranch.cs" />
+    <Compile Include="Core\Libraries\Storages\LibraryBranchesStorage.cs" />
+    <Compile Include="Core\Libraries\Storages\LibraryStorage.cs" />
+    <Compile Include="Core\Users\Controllers\AdminController.cs" />
+    <Compile Include="Core\Users\Controllers\ClientController.cs" />
+    <Compile Include="Core\Users\DAOs\AdminDAO.cs" />
+    <Compile Include="Core\Users\DAOs\ClientDAO.cs" />
+    <Compile Include="Core\Users\DAOs\LibrarianDAO.cs" />
+    <Compile Include="Core\Users\Controllers\LibrarianController.cs" />
+    <Compile Include="Core\Users\Models\Admin.cs" />
     <Compile Include="Core\Users\Models\Client.cs" />
     <Compile Include="Core\Users\Models\ClientType.cs" />
-    <Compile Include="Core\Users\Models\MembershipCard.cs" />
+    <Compile Include="Core\Users\Models\Librarian.cs" />
+    <Compile Include="Core\Libraries\Models\MembershipCard.cs" />
+    <Compile Include="Core\Users\Storages\AdminStorage.cs" />
+    <Compile Include="Core\Users\Storages\ClientStorage.cs" />
+    <Compile Include="Core\Users\Storages\LibrarianStorage.cs" />
+    <Compile Include="Core\Libraries\Storages\MembershipCardStorage.cs" />
     <Compile Include="Core\Users\Storages\UserStorage.cs" />
     <Compile Include="GUI\Admins\AdminHomeWindow.xaml.cs">
       <DependentUpon>AdminHomeWindow.xaml</DependentUpon>
@@ -128,6 +154,9 @@
     <None Include="Data\books.csv" />
     <None Include="Data\clients.csv" />
     <None Include="Data\librarians.csv" />
+    <None Include="Data\libraries.csv" />
+    <None Include="Data\libraryBranches.csv" />
+    <None Include="Data\membershipCards.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
