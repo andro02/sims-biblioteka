@@ -2,6 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>latest</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{089C1E73-1EEC-4591-BEB7-E94CA61052D6}</ProjectGuid>
@@ -55,6 +56,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Books\Controllers\BookController.cs" />
+    <Compile Include="Core\Books\DAOs\BookDAO.cs" />
+    <Compile Include="Core\Books\Models\Book.cs" />
+    <Compile Include="Core\Books\Storages\BookStorage.cs" />
+    <Compile Include="Core\Users\Models\Client.cs" />
+    <Compile Include="Core\Users\Models\ClientType.cs" />
+    <Compile Include="Core\Users\Models\MembershipCard.cs" />
+    <Compile Include="Core\Users\Storages\UserStorage.cs" />
+    <Compile Include="GUI\Admins\AdminHomeWindow.xaml.cs">
+      <DependentUpon>AdminHomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Librarians\LibrarianHomeWindow.xaml.cs">
+      <DependentUpon>LibrarianHomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Librarians\NewClientInformationWindow.xaml.cs">
+      <DependentUpon>NewClientInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Observer\IObserver.cs" />
+    <Compile Include="Utilities\Observer\ISubject.cs" />
+    <Compile Include="Utilities\Serializer\ISerializable.cs" />
+    <Compile Include="Utilities\Serializer\Serializer.cs" />
+    <Page Include="GUI\Admins\AdminHomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Librarians\LibrarianHomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Librarians\NewClientInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,6 +97,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Users\Controllers\UserController.cs" />
+    <Compile Include="Core\Users\DAOs\UserDAO.cs" />
+    <Compile Include="Core\Users\Models\User.cs" />
+    <Compile Include="Core\Users\Models\UserType.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -86,6 +124,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\admins.csv" />
+    <None Include="Data\books.csv" />
+    <None Include="Data\clients.csv" />
+    <None Include="Data\librarians.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,5 +136,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

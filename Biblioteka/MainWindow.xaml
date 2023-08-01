@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Biblioteka"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Log In" Height="450" Width="800">
+        Title="Log In" Height="230" Width="300">
     <Grid>
-        
+        <TextBox Name="UsernameTextBox" HorizontalAlignment="Center" Margin="0,68,0,0" TextWrapping="Wrap" Text="{Binding Path=Username, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,110,0,0" TextWrapping="Wrap" Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Button IsDefault="true" Content="Log in" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="120"  Click="LoginButton_Click"/>
     </Grid>
 </Window>
