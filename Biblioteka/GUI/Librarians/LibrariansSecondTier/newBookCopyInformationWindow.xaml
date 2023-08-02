@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Biblioteka.GUI.Librarians.LibrariansSecondTier"
         mc:Ignorable="d"
-        Title="newBookCopyInformationWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="New Book Copy Information" Height="360" Width="300">
     <Grid>
-        
+        <Label Content="ISBN:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="ISBNsComboBox" ItemsSource="{Binding Path=ISBNs}" SelectedValue="{Binding Path=BookCopy.ISBN, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Margin="0,23,20,0" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Language:" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="LanguageTextBox" HorizontalAlignment="Right" Margin="0,65,20,0" TextWrapping="Wrap" Text="{Binding Path=BookCopy.Language, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Format:" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="FormatTextBox" HorizontalAlignment="Right" Margin="0,105,20,0" TextWrapping="Wrap" Text="{Binding Path=BookCopy.Format, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Publisher:" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="PublisherTextBox" HorizontalAlignment="Right" Margin="0,145,20,0" TextWrapping="Wrap" Text="{Binding Path=BookCopy.Publisher, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Publishing Year:" HorizontalAlignment="Left" Margin="20,180,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="PublishingYearTextBox" HorizontalAlignment="Right" Margin="0,185,20,0" TextWrapping="Wrap" Text="{Binding Path=PublishingYear, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Cover type:" HorizontalAlignment="Left" Margin="20,220,0,0" VerticalAlignment="Top"/>
+        <ComboBox SelectedValue="{Binding Path=SelectedCoverType, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Name="CoverTypesComboBox" HorizontalAlignment="Right" Margin="0,223,20,0" VerticalAlignment="Top" Width="140"/>
+        <Button Name="AddNewBookCopyButton" Click="AddNewBookCopyButton_Click" Content="Add new book" Padding="10 5" HorizontalAlignment="Center" Margin="0,270,0,0" VerticalAlignment="Top" Width="140"/>
     </Grid>
 </Window>

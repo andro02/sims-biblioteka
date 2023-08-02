@@ -10,7 +10,7 @@ namespace Biblioteka.Core.BookCopys.Storages
 {
     public class BookCopyStorage
     {
-        private const string StoragePath = "../../Data/bookCopiesStorage.csv";
+        private const string StoragePath = "../../Data/bookCopies.csv";
 
         private readonly Serializer<BookCopy> _serializer;
 

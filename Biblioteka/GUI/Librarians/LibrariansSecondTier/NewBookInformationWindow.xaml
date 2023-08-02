@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Biblioteka.GUI.Librarians.LibrariansSecondTier"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="New Client Information" Height="320" Width="280">
+        Title="New Book Information" Height="320" Width="280">
     <Grid>
         <Label Content="ISBN:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
         <TextBox Name="ISBNTextBox" HorizontalAlignment="Right" Margin="0,25,20,0" TextWrapping="Wrap" Text="{Binding Path=Book.ISBN, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="180"/>
