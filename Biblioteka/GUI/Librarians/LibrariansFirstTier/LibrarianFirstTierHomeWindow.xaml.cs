@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka.Core.Users.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,19 +16,23 @@ using System.Windows.Shapes;
 namespace Biblioteka.GUI.Librarians
 {
     /// <summary>
-    /// Interaction logic for LibrarianHomeWindow.xaml
+    /// Interaction logic for LibrarianFirstTierHomeWindow.xaml
     /// </summary>
-    public partial class LibrarianHomeWindow : Window
+    public partial class LibrarianFirstTierHomeWindow : Window
     {
-        public LibrarianHomeWindow()
+        private UserController _userController;
+
+        public LibrarianFirstTierHomeWindow(UserController userController)
         {
             InitializeComponent();
             DataContext = this;
+
+            _userController = userController;
         }
 
         private void RegisterNewClientButton_Click(object sender, RoutedEventArgs e)
         {
-            NewClientInformationWindow newClientInformationWindow = new NewClientInformationWindow();
+            NewClientInformationWindow newClientInformationWindow = new NewClientInformationWindow(_userController);
             newClientInformationWindow.Show();
         }
     }

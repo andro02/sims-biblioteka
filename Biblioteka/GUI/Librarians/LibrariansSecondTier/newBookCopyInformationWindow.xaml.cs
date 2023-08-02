@@ -12,17 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Biblioteka.GUI.Librarians
+namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
 {
     /// <summary>
-    /// Interaction logic for NewClientInformationWindow.xaml
+    /// Interaction logic for NewBookCopyInformationWindow.xaml
     /// </summary>
-    public partial class NewClientInformationWindow : Window
+    public partial class NewBookCopyInformationWindow : Window
     {
-        public NewClientInformationWindow()
+        public NewBookCopyInformationWindow()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }

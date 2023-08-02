@@ -28,6 +28,14 @@ namespace Biblioteka.Core.Users.Controllers
             return _users.GetByUsername(username);
         }
 
+        public bool IsAlreadyTaken(string username)
+        {
+            User? user = GetUserByUsername(username);
+            if (user == null)
+                return false;
+            return true;
+        }
+
         public User? TryLogin(string username, string password)
         {
             User? user = GetUserByUsername(username);

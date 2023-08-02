@@ -9,41 +9,41 @@ using System.Threading.Tasks;
 
 namespace Biblioteka.Core.Libraries.DAOs
 {
-    public class LibraryDAO : ISubject
+    public class LibraryBranchDAO : ISubject
     {
         private List<IObserver> _observers;
-        private LibraryStorage _storage;
-        private List<Library> _libraries;
+        private LibraryBranchStorage _storage;
+        private List<LibraryBranch> _libraryBranches;
 
-        public LibraryDAO()
+        public LibraryBranchDAO()
         {
-            _storage = new LibraryStorage();
-            _libraries = _storage.Load();
+            _storage = new LibraryBranchStorage();
+            _libraryBranches = _storage.Load();
             _observers = new List<IObserver>();
         }
 
-        public void Add(Library user)
+        public void Add(LibraryBranch user)
         {
-            _libraries.Add(user);
-            _storage.Save(_libraries);
+            _libraryBranches.Add(user);
+            _storage.Save(_libraryBranches);
             NotifyObservers();
         }
 
-        public void Remove(Library user)
+        public void Remove(LibraryBranch user)
         {
-            _libraries.Remove(user);
-            _storage.Save(_libraries);
+            _libraryBranches.Remove(user);
+            _storage.Save(_libraryBranches);
             NotifyObservers();
         }
 
-        public List<Library> GetAll()
+        public List<LibraryBranch> GetAll()
         {
-            return _libraries;
+            return _libraryBranches;
         }
 
-        public Library? GetById(int id)
+        public LibraryBranch? GetById(int id)
         {
-            return _libraries.Find(x => x.Id == id);
+            return _libraryBranches.Find(x => x.Id == id);
         }
 
         public void Subscribe(IObserver observer)

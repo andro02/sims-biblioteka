@@ -1,5 +1,6 @@
 ﻿using Biblioteka.Core.Books.DAOs;
 using Biblioteka.Core.Books.Models;
+using Biblioteka.Core.Users.Models;
 using Biblioteka.Utilities.Observer;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,17 @@ namespace Biblioteka.Core.Books.Controllers
             return _books.GetAll();
         }
 
-        public Book? GetBookById(int id)
+        public Book? GetBookByISBN(string isbn)
         {
-            return _books.GetById(id);
+            return _books.GetByISBN(isbn);
+        }
+
+        public bool IsAlreadyTaken(string isbn)
+        {
+            Book? book = GetBookByISBN(isbn);
+            if (book == null)
+                return false;
+            return true;
         }
 
         public void Create(Book Book)

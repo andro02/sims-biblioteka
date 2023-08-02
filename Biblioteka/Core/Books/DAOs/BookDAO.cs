@@ -24,16 +24,8 @@ namespace Biblioteka.Core.Books.DAOs
             _observers = new List<IObserver>();
         }
 
-        public int NextId()
-        {
-            if (_books.Count > 0)
-                return _books.Max(x => x.Id) + 1;
-            return 1;
-        }
-
         public void Add(Book book)
         {
-            book.Id = NextId();
             _books.Add(book);
             _storage.Save(_books);
             NotifyObservers();
@@ -51,9 +43,9 @@ namespace Biblioteka.Core.Books.DAOs
             return _books;
         }
 
-        public Book? GetById(int id)
+        public Book? GetByISBN(string isbn)
         {
-            return _books.Find(x => x.Id == id);
+            return _books.Find(x => x.ISBN == isbn);
         }
 
         public void Subscribe(IObserver observer)

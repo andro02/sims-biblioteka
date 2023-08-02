@@ -1,9 +1,11 @@
 ﻿using Biblioteka.Core.Books.Controllers;
 using Biblioteka.Core.Books.Models;
+using Biblioteka.Core.Users;
 using Biblioteka.Core.Users.Controllers;
 using Biblioteka.Core.Users.Models;
 using Biblioteka.GUI.Admins;
 using Biblioteka.GUI.Librarians;
+using Biblioteka.GUI.Librarians.LibrariansSecondTier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +28,11 @@ namespace Biblioteka
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserController _userController;
         public string Username { get; set; }
         public string Password { get; set; }
+
+        private UserController _userController;
+        private LibrarianController _librarianController;
 
         public MainWindow()
         {
@@ -40,6 +44,7 @@ namespace Biblioteka
             Password = string.Empty;
 
             _userController = new UserController();
+            _librarianController = new LibrarianController();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -54,8 +59,17 @@ namespace Biblioteka
             {
                 case UserType.Librarian:
                     {
-                        LibrarianHomeWindow librarianHomeWindow = new LibrarianHomeWindow();
-                        librarianHomeWindow.Show();
+                        Librarian librarian = _librarianController.GetLibrarianByUsername(Username);
+                        if (librarian.LibrarianTier == LibrarianTier.First)
+                        {
+                            LibrarianFirstTierHomeWindow librarianFirstTierHomeWindow = new LibrarianFirstTierHomeWindow(_userController);
+                            librarianFirstTierHomeWindow.Show();
+                        }
+                        else
+                        {
+                            LibrarianSecondTierHomeWindow librarianSecondTierHomeWindow = new LibrarianSecondTierHomeWindow(_userController);
+                            librarianSecondTierHomeWindow.Show();
+                        }
                         break;
                     }
                 case UserType.Admin:
