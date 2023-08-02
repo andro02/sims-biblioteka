@@ -28,17 +28,20 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
         public List<string> ISBNs { get; set; }
         public CoverType SelectedCoverType { get; set; }
         public string PublishingYear { get; set; }
+        public string Quantity { get; set; }
 
         private BookController _bookController;
         private BookCopyController _bookCopyController;
+        private Librarian _librarian;
 
-        public NewBookCopyInformationWindow()
+        public NewBookCopyInformationWindow(Librarian librarian)
         {
             InitializeComponent();
             DataContext = this;
 
             _bookController = new BookController();
             _bookCopyController = new BookCopyController();
+            _librarian = librarian;
 
             BookCopy = new BookCopy();
             CoverTypes = new List<CoverType>(Enum.GetValues(typeof(CoverType)).Cast<CoverType>().ToList());
@@ -51,8 +54,14 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             if (!IsBookCopyValid())
                 return;
 
-            _bookCopyController.Create(BookCopy);
-            MessageBox.Show("Book copy successfully added.", "Success");
+            BookCopy.CoverType = SelectedCoverType;
+            BookCopy.LibraryBranchId = _librarian.LibraryBranchId;
+            int quantity = int.Parse(Quantity);
+            for (int i = 0; i < quantity; i++)
+            {
+                _bookCopyController.Create(new BookCopy(-1, BookCopy.ISBN, BookCopy.LibraryBranchId, BookCopy.Language, BookCopy.Format, BookCopy.CoverType, BookCopy.Publisher, BookCopy.PublishingYear));
+            }
+            MessageBox.Show("Book copy(s) successfully added.", "Success");
             ResetInputFields();
         }
 
@@ -73,8 +82,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
                 MessageBox.Show("No publisher provided.", "Error");
                 return false;
             }
-            int publishingYear;
-            if (!int.TryParse(PublishingYear, out publishingYear))
+            if (!int.TryParse(PublishingYear, out int publishingYear))
             {
                 MessageBox.Show("Publishing year is not a valid number.", "Error");
                 return false;
@@ -83,6 +91,16 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             if (BookCopy.PublishingYear < 1900 || BookCopy.PublishingYear > DateTime.Now.Year)
             {
                 MessageBox.Show($"Publishing year must be between 1900 and {DateTime.Now.Year}.", "Error");
+                return false;
+            }
+            if (!int.TryParse(Quantity, out int quantity))
+            {
+                MessageBox.Show("Quantity is not a valid number.", "Error");
+                return false;
+            }
+            if (quantity < 1 || quantity > 100)
+            {
+                MessageBox.Show("Quantity must be between 1 and 100", "Error");
                 return false;
             }
             return true;
@@ -96,17 +114,22 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             PublisherTextBox.Text = string.Empty;
             PublishingYearTextBox.Text = string.Empty;
             CoverTypesComboBox.SelectedValue = CoverTypesComboBox.Items[0];
+            QuantityTextBox.Text = string.Empty;
         }
 
         private void LoadComboBox()
         {
-            if (ISBNsComboBox.Items.Count == 0)
+            if (ISBNs.Count == 0)
             {
                 MessageBox.Show("There are no books in the system.", "Error");
                 AddNewBookCopyButton.IsEnabled = false;
             }
             else
             {
+                foreach (string isbn in ISBNs)
+                {
+                    ISBNsComboBox.Items.Add(isbn);
+                }
                 ISBNsComboBox.SelectedValue = ISBNsComboBox.Items[0];
             }
             foreach (CoverType coverType in CoverTypes)

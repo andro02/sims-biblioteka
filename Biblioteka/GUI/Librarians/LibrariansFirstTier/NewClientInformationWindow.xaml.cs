@@ -47,8 +47,10 @@ namespace Biblioteka.GUI.Librarians
                 return;
 
             Client.UserType = UserType.Client;
-            _clientController.Create(Client);
-            _userController.Create(Client);
+            Enum.TryParse<ClientType>(SelectedClientType, out ClientType clientType);
+            Client.ClientType = clientType;
+            _clientController.Create(new Client(Client.Username, Client.Password, Client.ClientType, Client.Name, Client.Surname));
+            _userController.Create(new User(Client.UserType, Client.Username, Client.Password));
             MessageBox.Show("Client successfully registered.", "Success");
             ResetInputFields();
         }
@@ -90,6 +92,7 @@ namespace Biblioteka.GUI.Librarians
             NameTextBox.Text = string.Empty;
             SurnameTextBox.Text = string.Empty;
             ClientTypesComboBox.SelectedValue = ClientTypesComboBox.Items[0];
+            SelectedClientType = ClientTypesComboBox.Items[0].ToString();
         }
 
         private void LoadComboBox()
@@ -99,6 +102,7 @@ namespace Biblioteka.GUI.Librarians
                 ClientTypesComboBox.Items.Add(clientType.ToString());
             }
             ClientTypesComboBox.SelectedValue = ClientTypesComboBox.Items[0];
+            SelectedClientType = ClientTypesComboBox.Items[0].ToString(); 
         }
     }
 }

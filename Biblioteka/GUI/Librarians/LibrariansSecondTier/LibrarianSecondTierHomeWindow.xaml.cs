@@ -1,4 +1,5 @@
 ﻿using Biblioteka.Core.Users.Controllers;
+using Biblioteka.Core.Users.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,14 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
     /// </summary>
     public partial class LibrarianSecondTierHomeWindow : Window
     {
-        private UserController _userController;
+        private Librarian _librarian;
 
-        public LibrarianSecondTierHomeWindow(UserController userController)
+        public LibrarianSecondTierHomeWindow(Librarian librarian)
         {
             InitializeComponent();
             DataContext = this;
 
-            _userController = userController;
+            _librarian = librarian;
         }
 
         private void AddNewBookButton_Click(object sender, RoutedEventArgs e)
@@ -38,7 +39,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
 
         private void AddNewBookCopyButton_Click(object sender, RoutedEventArgs e)
         {
-            NewBookCopyInformationWindow newBookCopyInformationWindow = new NewBookCopyInformationWindow();
+            NewBookCopyInformationWindow newBookCopyInformationWindow = new NewBookCopyInformationWindow(_librarian);
             newBookCopyInformationWindow.Show();
         }
     }

@@ -43,7 +43,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             if (!IsBookValid())
                 return;
 
-            _bookController.Create(Book);
+            _bookController.Create(new Book(-1, Book.ISBN, Book.Title, Book.Authors, Book.Description));
             MessageBox.Show("Book successfully added.", "Success");
             ResetInputFields();
         }

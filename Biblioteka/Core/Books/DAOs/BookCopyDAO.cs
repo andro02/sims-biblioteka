@@ -29,10 +29,10 @@ namespace Biblioteka.Core.BookCopys.DAOs
             return 1;
         }
 
-        public void Add(BookCopy book)
+        public void Add(BookCopy bookCopy)
         {
-            book.Id = NextId();
-            _bookCopies.Add(book);
+            bookCopy.Id = NextId();
+            _bookCopies.Add(bookCopy);
             _storage.Save(_bookCopies);
             NotifyObservers();
         }

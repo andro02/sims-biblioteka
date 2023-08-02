@@ -58,7 +58,7 @@ namespace Biblioteka.Core.Books.Models
             this.LibraryBranchId = int.Parse(values[2]);
             this.Language = values[3];
             this.Format = values[4];
-            Enum.TryParse<CoverType>(values[0], out CoverType coverType);
+            Enum.TryParse<CoverType>(values[5], out CoverType coverType);
             this.CoverType = coverType;
             this.Publisher = values[6];
             this.PublishingYear = int.Parse(values[7]);

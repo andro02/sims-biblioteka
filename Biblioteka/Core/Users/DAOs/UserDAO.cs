@@ -25,14 +25,12 @@ namespace Biblioteka.Core.Users.DAOs
         public void Add(User user)
         {
             _users.Add(user);
-            _storage.Save(_users);
             NotifyObservers();
         }
 
         public void Remove(User user)
         {
             _users.Remove(user);
-            _storage.Save(_users);
             NotifyObservers();
         }
 

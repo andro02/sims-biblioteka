@@ -67,7 +67,7 @@ namespace Biblioteka
                         }
                         else
                         {
-                            LibrarianSecondTierHomeWindow librarianSecondTierHomeWindow = new LibrarianSecondTierHomeWindow(_userController);
+                            LibrarianSecondTierHomeWindow librarianSecondTierHomeWindow = new LibrarianSecondTierHomeWindow(librarian);
                             librarianSecondTierHomeWindow.Show();
                         }
                         break;

@@ -39,10 +39,10 @@ namespace Biblioteka.Core.Books.Models
 
         public virtual void FromCSV(string[] values)
         {
-            this.ISBN = values[1];
-            this.Title = values[2];
-            this.Authors = values[3].Split(';').ToList();
-            this.Description = values[4];
+            this.ISBN = values[0];
+            this.Title = values[1];
+            this.Authors = values[2].Split(';').ToList();
+            this.Description = values[3];
         }
 
         public override string ToString()
