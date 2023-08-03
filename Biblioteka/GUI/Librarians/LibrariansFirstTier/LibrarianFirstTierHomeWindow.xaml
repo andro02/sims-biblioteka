@@ -9,5 +9,6 @@
         Title="Librarian Home Window" Height="450" Width="800">
     <Grid>
         <Button Click="RegisterNewClientButton_Click" Content="Register new client" HorizontalAlignment="Left" Margin="30,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
+        <Button Click="RegisterNewMembershipCardButton_Click" Content="Register new membership card" HorizontalAlignment="Left" Margin="200,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
     </Grid>
 </Window>

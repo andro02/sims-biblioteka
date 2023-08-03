@@ -28,6 +28,14 @@ namespace Biblioteka.Core.Users.Controllers
             return _clients.GetByUsername(username);
         }
 
+        public bool IsAlreadyTaken(string username)
+        {
+            Client? client = GetClientByUsername(username);
+            if (client == null)
+                return false;
+            return true;
+        }
+
         public void Create(Client client)
         {
             _clients.Add(client);

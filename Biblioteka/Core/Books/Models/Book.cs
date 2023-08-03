@@ -12,28 +12,31 @@ namespace Biblioteka.Core.Books.Models
     {
         public string ISBN { get; set; }
         public string Title { get; set; }
-        public List<string> Authors { get; set; }
+        public string Authors { get; set; }
+        public List<string> AuthorsList { get; set; }
         public string Description { get; set; }
 
         public Book()
         {
             this.ISBN = string.Empty;
             this.Title = string.Empty;
-            this.Authors = new List<string>();
+            this.Authors = string.Empty;
+            this.AuthorsList = new List<string>();
             this.Description = string.Empty;
         }
 
-        public Book(int id, string isbn, string title, List<string> authors, string description)
+        public Book(int id, string isbn, string title, List<string> authorsList, string description)
         {
             this.ISBN = isbn;
             this.Title = title;
-            this.Authors = authors;
+            this.AuthorsList = authorsList;
+            this.Authors = string.Join(", ", AuthorsList);
             this.Description = description;
         }
 
         public virtual string[] ToCSV()
         {
-            string[] csvValues = { this.ISBN, this.Title, string.Join(";", this.Authors), this.Description };
+            string[] csvValues = { this.ISBN, this.Title, string.Join(";", this.AuthorsList), this.Description };
             return csvValues;
         }
 
@@ -41,7 +44,8 @@ namespace Biblioteka.Core.Books.Models
         {
             this.ISBN = values[0];
             this.Title = values[1];
-            this.Authors = values[2].Split(';').ToList();
+            this.AuthorsList = values[2].Split(';').ToList();
+            this.Authors = string.Join(", ", AuthorsList);
             this.Description = values[3];
         }
 

@@ -22,16 +22,23 @@ namespace Biblioteka.Core.Libraries.DAOs
             _observers = new List<IObserver>();
         }
 
-        public void Add(LibraryBranch user)
+        public int NextId()
         {
-            _libraryBranches.Add(user);
+            if (_libraryBranches.Count > 0)
+                return _libraryBranches.Max(x => x.Id) + 1;
+            return 1;
+        }
+
+        public void Add(LibraryBranch libraryBranch)
+        {
+            _libraryBranches.Add(libraryBranch);
             _storage.Save(_libraryBranches);
             NotifyObservers();
         }
 
-        public void Remove(LibraryBranch user)
+        public void Remove(LibraryBranch libraryBranch)
         {
-            _libraryBranches.Remove(user);
+            _libraryBranches.Remove(libraryBranch);
             _storage.Save(_libraryBranches);
             NotifyObservers();
         }

@@ -95,8 +95,14 @@
     <Compile Include="GUI\Admins\AdminHomeWindow.xaml.cs">
       <DependentUpon>AdminHomeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Clients\ClientHomeWindow.xaml.cs">
+      <DependentUpon>ClientHomeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Librarians\LibrariansFirstTier\LibrarianFirstTierHomeWindow.xaml.cs">
       <DependentUpon>LibrarianFirstTierHomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Librarians\LibrariansFirstTier\NewMembershipCardInformationWindow.xaml.cs">
+      <DependentUpon>NewMembershipCardInformationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Librarians\LibrariansSecondTier\LibrarianSecondTierHomeWindow.xaml.cs">
       <DependentUpon>LibrarianSecondTierHomeWindow.xaml</DependentUpon>
@@ -118,7 +124,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Clients\ClientHomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Librarians\LibrariansFirstTier\LibrarianFirstTierHomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Librarians\LibrariansFirstTier\NewMembershipCardInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

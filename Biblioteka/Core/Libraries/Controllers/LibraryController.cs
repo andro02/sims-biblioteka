@@ -19,7 +19,7 @@ namespace Biblioteka.Core.Libraries.Controllers
             _libraries = new LibraryDAO();
         }
 
-        public List<Library> GetAllLibrarys()
+        public List<Library> GetAllLibraries()
         {
             return _libraries.GetAll();
         }
@@ -27,6 +27,17 @@ namespace Biblioteka.Core.Libraries.Controllers
         public Library? GetLibraryById(int id)
         {
             return _libraries.GetById(id);
+        }
+
+        public List<Library> GetFilteredLibraries(string nameFilter)
+        {
+            List<Library> libraries = new List<Library>();
+            foreach (Library library in GetAllLibraries()) 
+            { 
+                if (library.Name.ToLower().Contains(nameFilter.ToLower()))
+                    libraries.Add(library);
+            }
+            return libraries;
         }
 
         public void Create(Library librariess)

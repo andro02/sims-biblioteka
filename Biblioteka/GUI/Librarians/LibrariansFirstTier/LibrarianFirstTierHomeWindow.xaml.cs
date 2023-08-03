@@ -1,4 +1,6 @@
 ﻿using Biblioteka.Core.Users.Controllers;
+using Biblioteka.Core.Users.Models;
+using Biblioteka.GUI.Librarians.LibrariansFirstTier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +23,27 @@ namespace Biblioteka.GUI.Librarians
     public partial class LibrarianFirstTierHomeWindow : Window
     {
         private UserController _userController;
+        private Librarian _librarian;
 
-        public LibrarianFirstTierHomeWindow(UserController userController)
+        public LibrarianFirstTierHomeWindow(UserController userController, Librarian librarian)
         {
             InitializeComponent();
             DataContext = this;
 
             _userController = userController;
+            _librarian = librarian;
         }
 
         private void RegisterNewClientButton_Click(object sender, RoutedEventArgs e)
         {
             NewClientInformationWindow newClientInformationWindow = new NewClientInformationWindow(_userController);
             newClientInformationWindow.Show();
+        }
+
+        private void RegisterNewMembershipCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            NewMembershipCardInformationWindow newMembershipCardInformationWindow = new NewMembershipCardInformationWindow(_librarian);
+            newMembershipCardInformationWindow.Show();
         }
     }
 }

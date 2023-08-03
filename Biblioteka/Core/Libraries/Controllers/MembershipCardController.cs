@@ -29,6 +29,16 @@ namespace Biblioteka.Core.Libraries.Controllers
             return _membershipCardss.GetById(id);
         }
 
+        public bool IsAlreadyRegistered(string clientUsername, int libraryId)
+        {
+            foreach (MembershipCard membershipCard in GetAllMembershipCards())
+            {
+                if (membershipCard.ClientUsername == clientUsername && membershipCard.LibraryId == libraryId)
+                    return true;
+            }
+            return false;
+        }
+
         public void Create(MembershipCard membershipCards)
         {
             _membershipCardss.Add(membershipCards);

@@ -11,7 +11,7 @@ namespace Biblioteka.Core.Libraries.Storages
 {
     public class LibraryStorage
     {
-        private const string StoragePath = "../../Data/libraryStorage.csv";
+        private const string StoragePath = "../../Data/libraries.csv";
 
         private readonly Serializer<Library> _serializer;
 

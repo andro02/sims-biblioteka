@@ -22,16 +22,24 @@ namespace Biblioteka.Core.Libraries.DAOs
             _observers = new List<IObserver>();
         }
 
-        public void Add(MembershipCard user)
+        public int NextId(MembershipCard membershipCard)
         {
-            _membershipCards.Add(user);
+            if (_membershipCards.Where(x => x.LibraryId == membershipCard.LibraryId).Count() > 0)
+                return _membershipCards.Where(x => x.LibraryId == membershipCard.LibraryId).Max(x => x.Id) + 1;
+            return 1;
+        }
+
+        public void Add(MembershipCard membershipCard)
+        {
+            membershipCard.Id = NextId(membershipCard);
+            _membershipCards.Add(membershipCard);
             _storage.Save(_membershipCards);
             NotifyObservers();
         }
 
-        public void Remove(MembershipCard user)
+        public void Remove(MembershipCard membershipCard)
         {
-            _membershipCards.Remove(user);
+            _membershipCards.Remove(membershipCard);
             _storage.Save(_membershipCards);
             NotifyObservers();
         }

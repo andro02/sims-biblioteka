@@ -4,6 +4,7 @@ using Biblioteka.Core.Users;
 using Biblioteka.Core.Users.Controllers;
 using Biblioteka.Core.Users.Models;
 using Biblioteka.GUI.Admins;
+using Biblioteka.GUI.Clients;
 using Biblioteka.GUI.Librarians;
 using Biblioteka.GUI.Librarians.LibrariansSecondTier;
 using System;
@@ -33,6 +34,7 @@ namespace Biblioteka
 
         private UserController _userController;
         private LibrarianController _librarianController;
+        private ClientController _clientController;
 
         public MainWindow()
         {
@@ -45,6 +47,7 @@ namespace Biblioteka
 
             _userController = new UserController();
             _librarianController = new LibrarianController();
+            _clientController = new ClientController();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -62,7 +65,7 @@ namespace Biblioteka
                         Librarian librarian = _librarianController.GetLibrarianByUsername(Username);
                         if (librarian.LibrarianTier == LibrarianTier.First)
                         {
-                            LibrarianFirstTierHomeWindow librarianFirstTierHomeWindow = new LibrarianFirstTierHomeWindow(_userController);
+                            LibrarianFirstTierHomeWindow librarianFirstTierHomeWindow = new LibrarianFirstTierHomeWindow(_userController, librarian);
                             librarianFirstTierHomeWindow.Show();
                         }
                         else
@@ -76,6 +79,13 @@ namespace Biblioteka
                     {
                         AdminHomeWindow adminHomeWindow = new AdminHomeWindow();
                         adminHomeWindow.Show();
+                        break;
+                    }
+                case UserType.Client:
+                    {
+                        Client client = _clientController.GetClientByUsername(Username);
+                        ClientHomeWindow clientHomeWindow = new ClientHomeWindow(client);
+                        clientHomeWindow.Show();
                         break;
                     }
             }

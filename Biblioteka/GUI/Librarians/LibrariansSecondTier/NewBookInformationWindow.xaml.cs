@@ -43,7 +43,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             if (!IsBookValid())
                 return;
 
-            _bookController.Create(new Book(-1, Book.ISBN, Book.Title, Book.Authors, Book.Description));
+            _bookController.Create(new Book(-1, Book.ISBN, Book.Title, Book.AuthorsList, Book.Description));
             MessageBox.Show("Book successfully added.", "Success");
             ResetInputFields();
         }
@@ -65,7 +65,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
                 MessageBox.Show("No authors provided.", "Error");
                 return false;
             }
-            Book.Authors = Authors.Split(';').ToList();
+            Book.AuthorsList = Authors.Split(';').ToList();
             if (Book.Description.Length == 0)
             {
                 MessageBox.Show("No description provided.", "Error");

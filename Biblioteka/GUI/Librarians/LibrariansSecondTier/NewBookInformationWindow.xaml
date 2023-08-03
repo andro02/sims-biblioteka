@@ -17,6 +17,6 @@
         <TextBox Name="AuthorsTextBox" HorizontalAlignment="Center" Margin="0,130,0,0" TextWrapping="Wrap" Text="{Binding Path=Authors, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="240"/>
         <Label Content="Description:" HorizontalAlignment="Left" Margin="20,160,0,0" VerticalAlignment="Top"/>
         <TextBox Name="DescriptionTextBox" HorizontalAlignment="Center" Margin="0,190,0,0" TextWrapping="Wrap" Text="{Binding Path=Book.Description, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="240"/>
-        <Button Click="AddNewBookButton_Click" Content="Add new book" Padding="10 5" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button IsDefault="true" Click="AddNewBookButton_Click" Content="Add new book" Padding="10 5" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="140"/>
     </Grid>
 </Window>

@@ -22,6 +22,6 @@
         <ComboBox SelectedValue="{Binding Path=SelectedCoverType, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" Name="CoverTypesComboBox" HorizontalAlignment="Right" Margin="0,223,20,0" VerticalAlignment="Top" Width="140"/>
         <Label Content="Quantity:" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top"/>
         <TextBox Name="QuantityTextBox" HorizontalAlignment="Right" Margin="0,265,20,0" TextWrapping="Wrap" Text="{Binding Path=Quantity, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140"/>
-        <Button Name="AddNewBookCopyButton" Click="AddNewBookCopyButton_Click" Content="Add new book" Padding="10 5" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button IsDefault="true" Name="AddNewBookCopyButton" Click="AddNewBookCopyButton_Click" Content="Add new book" Padding="10 5" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="140"/>
     </Grid>
 </Window>
