@@ -45,5 +45,11 @@ namespace Biblioteka.GUI.Librarians
             NewMembershipCardInformationWindow newMembershipCardInformationWindow = new NewMembershipCardInformationWindow(_librarian);
             newMembershipCardInformationWindow.Show();
         }
+
+        private void ExtendMembershipButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExtendMembershipWindow extendMembershipWindow = new ExtendMembershipWindow(_librarian);
+            extendMembershipWindow.Show();
+        }
     }
 }

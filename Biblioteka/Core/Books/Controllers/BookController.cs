@@ -70,14 +70,14 @@ namespace Biblioteka.Core.Books.Controllers
             return books;
         }
 
-        public void Create(Book Book)
+        public void Create(Book book)
         {
-            _books.Add(Book);
+            _books.Add(book);
         }
 
-        public void Delete(Book Book)
+        public void Delete(Book book)
         {
-            _books.Remove(Book);
+            _books.Remove(book);
         }
 
         public void Subscribe(IObserver observer)

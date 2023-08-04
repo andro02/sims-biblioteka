@@ -60,14 +60,19 @@ namespace Biblioteka.Core.BookCopys.Controllers
             return bookCopies;
         }
 
-        public void Create(BookCopy BookCopy)
+        public void Create(BookCopy bookCopy)
         {
-            _bookCopies.Add(BookCopy);
+            _bookCopies.Add(bookCopy);
         }
 
-        public void Delete(BookCopy BookCopy)
+        public void Update(BookCopy bookCopy)
         {
-            _bookCopies.Remove(BookCopy);
+            _bookCopies.Change(bookCopy);
+        }
+
+        public void Delete(BookCopy bookCopy)
+        {
+            _bookCopies.Remove(bookCopy);
         }
 
         public void Subscribe(IObserver observer)

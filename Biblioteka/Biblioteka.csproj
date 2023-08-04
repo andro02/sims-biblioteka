@@ -58,13 +58,22 @@
     </ApplicationDefinition>
     <Compile Include="Core\Books\Controllers\BookController.cs" />
     <Compile Include="Core\Books\Controllers\BookCopyController.cs" />
+    <Compile Include="Core\Books\Controllers\BorrowController.cs" />
+    <Compile Include="Core\Books\Controllers\DeadlineExtensionRequestController.cs" />
     <Compile Include="Core\Books\DAOs\BookCopyDAO.cs" />
     <Compile Include="Core\Books\DAOs\BookDAO.cs" />
+    <Compile Include="Core\Books\DAOs\BorrowDAO.cs" />
+    <Compile Include="Core\Books\DAOs\DeadlineExtensionRequestDAO.cs" />
     <Compile Include="Core\Books\Models\Book.cs" />
     <Compile Include="Core\Books\Models\BookCopy.cs" />
+    <Compile Include="Core\Books\Models\BookCopyStatus.cs" />
+    <Compile Include="Core\Books\Models\Borrow.cs" />
     <Compile Include="Core\Books\Models\CoverType.cs" />
+    <Compile Include="Core\Books\Models\DeadlineExtensionRequest.cs" />
     <Compile Include="Core\Books\Storages\BookCopyStorage.cs" />
     <Compile Include="Core\Books\Storages\BookStorage.cs" />
+    <Compile Include="Core\Books\Storages\BorrowStorage.cs" />
+    <Compile Include="Core\Books\Storages\DeadlineExtensionRequestStorage.cs" />
     <Compile Include="Core\Libraries\Controllers\LibraryBranchController.cs" />
     <Compile Include="Core\Libraries\Controllers\LibraryController.cs" />
     <Compile Include="Core\Libraries\Controllers\MembershipCardController.cs" />
@@ -98,11 +107,23 @@
     <Compile Include="GUI\Clients\ClientHomeWindow.xaml.cs">
       <DependentUpon>ClientHomeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Clients\ViewBorrowsWindow.xaml.cs">
+      <DependentUpon>ViewBorrowsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Librarians\LibrariansFirstTier\ExtendMembershipWindow.xaml.cs">
+      <DependentUpon>ExtendMembershipWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Librarians\LibrariansFirstTier\LibrarianFirstTierHomeWindow.xaml.cs">
       <DependentUpon>LibrarianFirstTierHomeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Librarians\LibrariansFirstTier\NewMembershipCardInformationWindow.xaml.cs">
       <DependentUpon>NewMembershipCardInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Librarians\LibrariansSecondTier\BookBorrowingInformationWindow.xaml.cs">
+      <DependentUpon>BookBorrowingInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Librarians\LibrariansSecondTier\DeadlineExtensionRequestsWindow.xaml.cs">
+      <DependentUpon>DeadlineExtensionRequestsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Librarians\LibrariansSecondTier\LibrarianSecondTierHomeWindow.xaml.cs">
       <DependentUpon>LibrarianSecondTierHomeWindow.xaml</DependentUpon>
@@ -128,11 +149,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Clients\ViewBorrowsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Librarians\LibrariansFirstTier\ExtendMembershipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Librarians\LibrariansFirstTier\LibrarianFirstTierHomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Librarians\LibrariansFirstTier\NewMembershipCardInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Librarians\LibrariansSecondTier\BookBorrowingInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Librarians\LibrariansSecondTier\DeadlineExtensionRequestsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,7 +227,9 @@
     <None Include="Data\admins.csv" />
     <None Include="Data\bookCopies.csv" />
     <None Include="Data\books.csv" />
+    <None Include="Data\borrows.csv" />
     <None Include="Data\clients.csv" />
+    <None Include="Data\deadlineExtensionRequests.csv" />
     <None Include="Data\librarians.csv" />
     <None Include="Data\libraries.csv" />
     <None Include="Data\libraryBranches.csv" />

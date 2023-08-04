@@ -3,7 +3,9 @@ using Biblioteka.Core.Books.Controllers;
 using Biblioteka.Core.Books.Models;
 using Biblioteka.Core.Libraries.Controllers;
 using Biblioteka.Core.Libraries.Models;
+using Biblioteka.Core.Users.Controllers;
 using Biblioteka.Core.Users.Models;
+using Biblioteka.GUI.Librarians;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -160,6 +162,12 @@ namespace Biblioteka.GUI.Clients
             {
                 BookCopies.Add(bookCopy);
             }
+        }
+
+        private void ViewBorrowsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewBorrowsWindow viewBorrowsWindow = new ViewBorrowsWindow(_client);
+            viewBorrowsWindow.Show();
         }
     }
 }

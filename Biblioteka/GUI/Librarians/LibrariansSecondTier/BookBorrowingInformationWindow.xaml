@@ -1,0 +1,62 @@
+﻿<Window x:Class="Biblioteka.GUI.Librarians.LibrariansSecondTier.BookBorrowingInformationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Biblioteka.GUI.Librarians.LibrariansSecondTier"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Book Borrowing" Height="800" Width="750">
+    <Grid>
+        <Label Content="Books:" HorizontalAlignment="Left" Margin="16,40,0,0" VerticalAlignment="Top"/>
+        <Label Content="ISBN:" HorizontalAlignment="Left" Margin="99,9,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="BooksFilterChanged" HorizontalAlignment="Left" Margin="150,14,0,0" TextWrapping="Wrap" Text="{Binding Path=BookISBNFilter,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Title:" HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="BooksFilterChanged" HorizontalAlignment="Left" Margin="150,46,0,0" TextWrapping="Wrap" Text="{Binding Path=BookTitleFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Authors:" HorizontalAlignment="Left" Margin="287,9,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="BooksFilterChanged" HorizontalAlignment="Left" Margin="365,14,0,0" TextWrapping="Wrap" Text="{Binding Path=BookAuthorsFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="288,41,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="BooksFilterChanged" HorizontalAlignment="Left" Margin="365,46,0,0" TextWrapping="Wrap" Text="{Binding Path=BookDescriptionFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <DataGrid
+                ItemsSource="{Binding Path=Books, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding Path=SelectedBook, UpdateSourceTrigger=PropertyChanged}"
+                SelectionChanged="BooksDataGrid_SelectionChanged"
+                AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="22,70,30,514">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Authors" Binding="{Binding Authors}" Width="220"></DataGridTextColumn>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="255"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Book copies:" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top"/>
+        <Label Content="Language:" HorizontalAlignment="Left" Margin="94,278,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="BookCopiesFilterChanged" HorizontalAlignment="Left" Margin="165,283,0,0" TextWrapping="Wrap" Text="{Binding Path=BookCopyLanguageFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="70"/>
+        <Label Content="Format:" HorizontalAlignment="Left" Margin="93,310,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="BookCopiesFilterChanged" HorizontalAlignment="Left" Margin="165,315,0,0" TextWrapping="Wrap" Text="{Binding Path=BookCopyFormatFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="70"/>
+        <Label Content="Cover type:" HorizontalAlignment="Left" Margin="243,278,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="CoverTypeComboBox" SelectionChanged="BookCopiesFilterChanged" SelectedValue="{Binding Path=BookCopyCoverTypeFilter, TargetNullValue='Any'}" HorizontalAlignment="Left" Margin="319,280,0,0" VerticalAlignment="Top" Width="90"/>
+        <TextBox TextChanged="BookCopiesFilterChanged" HorizontalAlignment="Left" Margin="319,315,0,0" TextWrapping="Wrap" Text="{Binding Path=BookCopyPublisherFilter,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="90"/>
+        <Label Content="Publisher:" HorizontalAlignment="Left" Margin="243,310,0,0" VerticalAlignment="Top"/>
+        <Label Content="Publishing year:" HorizontalAlignment="Left" Margin="417,290,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="BookCopiesFilterChanged" HorizontalAlignment="Left" Margin="421,315,0,0" TextWrapping="Wrap" Text="{Binding Path=BookCopyPublishingYearFilter, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="90"/>
+        <DataGrid
+                ItemsSource="{Binding Path=BookCopies, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding Path=SelectedBookCopy, UpdateSourceTrigger=PropertyChanged}"
+                SelectionChanged="BookCopiesDataGrid_SelectionChanged"
+                AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="22,341,30,243">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Format" Binding="{Binding Format}" Width="80"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cover Type" Binding="{Binding CoverType}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" Width="120"></DataGridTextColumn>
+                <DataGridTextColumn Header="Publishing Year" Binding="{Binding PublishingYear}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="105"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Client username:" HorizontalAlignment="Left" Margin="20,570,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="ClientUsernameTextChanged" Name="ClientUsernameTextBox" HorizontalAlignment="Left" Margin="140,576,0,0" TextWrapping="Wrap" Text="{Binding Path=ClientUsername, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Button IsEnabled="False" Name="GiveAwayButton" IsDefault="True" Click="GiveAwayButton_Click" Content="Give away" Padding="30 5" HorizontalAlignment="Left" Margin="404,572,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

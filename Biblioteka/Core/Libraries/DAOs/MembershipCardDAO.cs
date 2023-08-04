@@ -37,6 +37,12 @@ namespace Biblioteka.Core.Libraries.DAOs
             NotifyObservers();
         }
 
+        public void Change(MembershipCard membershipCard)
+        {
+            _storage.Save(_membershipCards);
+            NotifyObservers();
+        }
+
         public void Remove(MembershipCard membershipCard)
         {
             _membershipCards.Remove(membershipCard);
@@ -49,9 +55,9 @@ namespace Biblioteka.Core.Libraries.DAOs
             return _membershipCards;
         }
 
-        public MembershipCard? GetById(int id)
+        public MembershipCard? GetById(string clientUsername, int libraryId)
         {
-            return _membershipCards.Find(x => x.Id == id);
+            return _membershipCards.Find(x => x.ClientUsername == clientUsername && x.LibraryId == libraryId);
         }
 
         public void Subscribe(IObserver observer)

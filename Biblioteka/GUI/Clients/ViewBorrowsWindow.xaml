@@ -1,0 +1,27 @@
+﻿<Window x:Class="Biblioteka.GUI.Clients.ViewBorrowsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Biblioteka.GUI.Clients"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Borrows" Height="450" Width="775">
+    <Grid>
+        <DataGrid
+                ItemsSource="{Binding Path=Borrows, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding Path=SelectedBorrow, UpdateSourceTrigger=PropertyChanged}"
+                SelectionChanged="BorrowsDataGrid_SelectionChanged"
+                AutoGenerateColumns="False" IsReadOnly="True" Margin="30,31,30,136">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Client username" Binding="{Binding ClientUsername}" Width="110"></DataGridTextColumn>
+                <DataGridTextColumn Header="Book copy id" Binding="{Binding BookCopyId}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Borrowed at" Binding="{Binding BorrowedAt}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="To return by" Binding="{Binding ReturnBy}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Is returned" Binding="{Binding IsReturned}" Width="100"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button IsEnabled="False" Name="ExtendDeadlineButton" Padding="20 5" Click="ExtendDeadlineButton_Click" Content="Send request to extend deadline" HorizontalAlignment="Left" Margin="30,330,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

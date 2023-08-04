@@ -42,5 +42,17 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             NewBookCopyInformationWindow newBookCopyInformationWindow = new NewBookCopyInformationWindow(_librarian);
             newBookCopyInformationWindow.Show();
         }
+
+        private void BookBorrowingButton_Click(object sender, RoutedEventArgs e)
+        {
+            BookBorrowingInformationWindow bookBorrowingInformationWindow = new BookBorrowingInformationWindow(_librarian);
+            bookBorrowingInformationWindow.Show();
+        }
+
+        private void ViewDeadlineExtensionRequestsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeadlineExtensionRequestsWindow deadlineExtensionRequestsWindow = new DeadlineExtensionRequestsWindow(_librarian);
+            deadlineExtensionRequestsWindow.Show();
+        }
     }
 }

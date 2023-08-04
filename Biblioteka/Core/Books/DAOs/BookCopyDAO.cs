@@ -37,6 +37,12 @@ namespace Biblioteka.Core.BookCopys.DAOs
             NotifyObservers();
         }
 
+        public void Change(BookCopy updatedBookCopy)
+        {
+            _storage.Save(_bookCopies);
+            NotifyObservers();
+        }
+
         public void Remove(BookCopy book)
         {
             _bookCopies.Remove(book);

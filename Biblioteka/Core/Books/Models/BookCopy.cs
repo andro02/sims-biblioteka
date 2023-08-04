@@ -20,6 +20,7 @@ namespace Biblioteka.Core.Books.Models
         public CoverType CoverType { get; set; }
         public string Publisher { get; set; }
         public int PublishingYear { get; set; }
+        public BookCopyStatus Status { get; set; }
 
         public BookCopy()
         {
@@ -31,9 +32,10 @@ namespace Biblioteka.Core.Books.Models
             this.CoverType = CoverType.Soft;
             this.Publisher = string.Empty;
             this.PublishingYear = -1;
+            this.Status = BookCopyStatus.Unavailable;
         }
 
-        public BookCopy(int id, string isbn, int libraryBranchId, string language, string format, CoverType coverType, string publisher, int publishingYear)
+        public BookCopy(int id, string isbn, int libraryBranchId, string language, string format, CoverType coverType, string publisher, int publishingYear, BookCopyStatus status)
         {
             this.Id = id;
             this.ISBN = isbn;
@@ -43,11 +45,12 @@ namespace Biblioteka.Core.Books.Models
             this.CoverType = coverType;
             this.Publisher = publisher;
             this.PublishingYear = publishingYear;
+            this.Status = status;
         }
 
         public virtual string[] ToCSV()
         {
-            string[] csvValues = { this.Id.ToString(), this.ISBN, this.LibraryBranchId.ToString(), this.Language, this.Format, this.CoverType.ToString(), this.Publisher, this.PublishingYear.ToString() };
+            string[] csvValues = { this.Id.ToString(), this.ISBN, this.LibraryBranchId.ToString(), this.Language, this.Format, this.CoverType.ToString(), this.Publisher, this.PublishingYear.ToString(), this.Status.ToString() };
             return csvValues;
         }
 
@@ -62,11 +65,13 @@ namespace Biblioteka.Core.Books.Models
             this.CoverType = coverType;
             this.Publisher = values[6];
             this.PublishingYear = int.Parse(values[7]);
+            Enum.TryParse<BookCopyStatus>(values[8], out BookCopyStatus status);
+            this.Status = status;
         }
 
         public override string ToString()
         {
-            return $"{this.Id} {this.ISBN} {this.LibraryBranchId} {this.Language} {this.Format} {this.CoverType} {this.Publisher} {this.PublishingYear}";
+            return $"{this.Id} {this.ISBN} {this.LibraryBranchId} {this.Language} {this.Format} {this.CoverType} {this.Publisher} {this.PublishingYear} {this.Status}";
         }
     }
 }

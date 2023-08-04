@@ -10,5 +10,6 @@
     <Grid>
         <Button Click="RegisterNewClientButton_Click" Content="Register new client" HorizontalAlignment="Left" Margin="30,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
         <Button Click="RegisterNewMembershipCardButton_Click" Content="Register new membership card" HorizontalAlignment="Left" Margin="200,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
+        <Button Click="ExtendMembershipButton_Click" Content="Extend membership" HorizontalAlignment="Left" Margin="440,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
     </Grid>
 </Window>

@@ -12,46 +12,58 @@ namespace Biblioteka.Core.Libraries.Controllers
 {
     public class MembershipCardController
     {
-        private MembershipCardDAO _membershipCardss;
+        private MembershipCardDAO _membershipCards;
 
         public MembershipCardController()
         {
-            _membershipCardss = new MembershipCardDAO();
+            _membershipCards = new MembershipCardDAO();
         }
 
         public List<MembershipCard> GetAllMembershipCards()
         {
-            return _membershipCardss.GetAll();
+            return _membershipCards.GetAll();
         }
 
-        public MembershipCard? GetMembershipCardById(int id)
+        public MembershipCard? GetMembershipCardById(string clientUsername, int libraryId)
         {
-            return _membershipCardss.GetById(id);
+            return _membershipCards.GetById(clientUsername, libraryId);
         }
 
         public bool IsAlreadyRegistered(string clientUsername, int libraryId)
         {
-            foreach (MembershipCard membershipCard in GetAllMembershipCards())
-            {
-                if (membershipCard.ClientUsername == clientUsername && membershipCard.LibraryId == libraryId)
-                    return true;
-            }
-            return false;
+            MembershipCard? membershipCard = GetMembershipCardById(clientUsername, libraryId);
+            if (membershipCard == null)
+                return false;
+            return true;
         }
 
-        public void Create(MembershipCard membershipCards)
+        public void ExtendMembership(string clientUsername, int libraryId)
         {
-            _membershipCardss.Add(membershipCards);
+            MembershipCard? membershipCard = GetMembershipCardById(clientUsername, libraryId);
+            if (membershipCard == null)
+                return;
+            membershipCard.ValidUntil = membershipCard.ValidUntil.AddMonths(1);
+            Update(membershipCard);
         }
 
-        public void Delete(MembershipCard membershipCards)
+        public void Create(MembershipCard membershipCard)
         {
-            _membershipCardss.Remove(membershipCards);
+            _membershipCards.Add(membershipCard);
+        }
+
+        public void Update(MembershipCard membershipCard) 
+        {
+            _membershipCards.Change(membershipCard);
+        }
+
+        public void Delete(MembershipCard membershipCard)
+        {
+            _membershipCards.Remove(membershipCard);
         }
 
         public void Subscribe(IObserver observer)
         {
-            _membershipCardss.Subscribe(observer);
+            _membershipCards.Subscribe(observer);
         }
     }
 }

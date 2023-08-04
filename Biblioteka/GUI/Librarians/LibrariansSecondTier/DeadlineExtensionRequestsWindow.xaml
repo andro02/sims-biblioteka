@@ -1,0 +1,25 @@
+﻿<Window x:Class="Biblioteka.GUI.Librarians.LibrariansSecondTier.DeadlineExtensionRequestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Biblioteka.GUI.Librarians.LibrariansSecondTier"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Deadline extension requests" Height="450" Width="500">
+    <Grid>
+        <DataGrid
+                ItemsSource="{Binding Path=DeadlineExtensionRequests, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding Path=SelectedDeadlineExtensionRequest, UpdateSourceTrigger=PropertyChanged}"
+                SelectionChanged="DeadlineExtensionRequestsDataGrid_SelectionChanged"
+                AutoGenerateColumns="False" IsReadOnly="True" Margin="30,31,30,217">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Borrow id" Binding="{Binding BorrowId}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Sent at" Binding="{Binding SentAt}" Width="200"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button IsEnabled="False" Name="AcceptRequestButton" Padding="20 5" Click="AcceptRequestButton_Click" Content="Accept" HorizontalAlignment="Left" Margin="30,250,0,0" VerticalAlignment="Top"/>
+        <Button IsEnabled="False" Name="RejectRequestButton" Padding="20 5" Click="RejectRequestButton_Click" Content="Reject" HorizontalAlignment="Left" Margin="130,250,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

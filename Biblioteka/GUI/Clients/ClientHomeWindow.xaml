@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Biblioteka.GUI.Clients"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="ClientHomeWindow" Height="800" Width="1000">
+        Title="Client Home Window" Height="800" Width="1200">
     <Grid>
         <Label Content="Libraries:" HorizontalAlignment="Left" Margin="44,40,0,0" VerticalAlignment="Top"/>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="229,40,0,0" VerticalAlignment="Top"/>
@@ -16,7 +16,7 @@
                 SelectedItem="{Binding Path=SelectedLibrary, UpdateSourceTrigger=PropertyChanged}"
                 SelectionChanged="LibrariesDataGrid_SelectionChanged"
                 AutoGenerateColumns="False" IsReadOnly="True"
-                Width="360" Height="200" Margin="50,70,590,514">
+                Width="360" Height="200" Margin="50,70,790,514">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="120"></DataGridTextColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="220"></DataGridTextColumn>
@@ -30,7 +30,7 @@
                 SelectedItem="{Binding Path=SelectedLibraryBranch, UpdateSourceTrigger=PropertyChanged}"
                 SelectionChanged="LibraryBranchesDataGrid_SelectionChanged"
                 AutoGenerateColumns="False" IsReadOnly="True"
-                Width="360" Height="200" Margin="50,341,590,243">
+                Width="360" Height="200" Margin="50,341,790,243">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="120"></DataGridTextColumn>
                 <DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="220"></DataGridTextColumn>
@@ -53,8 +53,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="100"></DataGridTextColumn>
-                <DataGridTextColumn Header="Authors" Binding="{Binding Authors}" Width="120"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="160"></DataGridTextColumn>
+                <DataGridTextColumn Header="Authors" Binding="{Binding Authors}" Width="220"></DataGridTextColumn>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="260"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Book copies:" HorizontalAlignment="Left" Margin="438,310,0,0" VerticalAlignment="Top"/>
@@ -74,14 +74,15 @@
                 SelectionChanged="BookCopiesDataGrid_SelectionChanged"
                 AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="450,341,49,243">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="50"></DataGridTextColumn>
-                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="80"></DataGridTextColumn>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"></DataGridTextColumn>
+                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Header="Format" Binding="{Binding Format}" Width="80"></DataGridTextColumn>
-                <DataGridTextColumn Header="Cover Type" Binding="{Binding CoverType}" Width="80"></DataGridTextColumn>
-                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" Width="90"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cover Type" Binding="{Binding CoverType}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" Width="120"></DataGridTextColumn>
                 <DataGridTextColumn Header="Publishing Year" Binding="{Binding PublishingYear}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="110"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="1020,364,0,0" VerticalAlignment="Top"/>
+        <Button Click="ViewBorrowsButton_Click" Content="View borrows" Padding="20 5" HorizontalAlignment="Left" Margin="50,570,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

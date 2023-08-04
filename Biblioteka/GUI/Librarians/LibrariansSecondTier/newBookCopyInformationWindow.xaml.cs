@@ -59,7 +59,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             int quantity = int.Parse(Quantity);
             for (int i = 0; i < quantity; i++)
             {
-                _bookCopyController.Create(new BookCopy(-1, BookCopy.ISBN, BookCopy.LibraryBranchId, BookCopy.Language, BookCopy.Format, BookCopy.CoverType, BookCopy.Publisher, BookCopy.PublishingYear));
+                _bookCopyController.Create(new BookCopy(-1, BookCopy.ISBN, BookCopy.LibraryBranchId, BookCopy.Language, BookCopy.Format, BookCopy.CoverType, BookCopy.Publisher, BookCopy.PublishingYear, BookCopyStatus.Available));
             }
             MessageBox.Show("Book copy(s) successfully added.", "Success");
             ResetInputFields();
