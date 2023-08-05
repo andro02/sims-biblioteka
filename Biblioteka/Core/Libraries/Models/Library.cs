@@ -12,6 +12,18 @@ namespace Biblioteka.Core.Libraries.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public Library()
+        {
+            this.Id = -1;
+            this.Name = string.Empty;
+        }
+
+        public Library(int id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
+        }   
+
         public virtual string[] ToCSV()
         {
             string[] csvValues = { this.Id.ToString(), this.Name };

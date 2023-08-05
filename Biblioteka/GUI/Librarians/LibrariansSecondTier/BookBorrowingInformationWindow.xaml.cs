@@ -50,6 +50,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
         private BorrowController _borrowController;
         private MembershipCardController _membershipCardController;
         private LibraryBranchController _libraryBranchController;
+        private LibraryRulesController _libraryRulesController;
         private Librarian _librarian;
         private int _libraryBranchId;
 
@@ -66,6 +67,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             _borrowController = new BorrowController();
             _membershipCardController = new MembershipCardController();
             _libraryBranchController = new LibraryBranchController();
+            _libraryRulesController = new LibraryRulesController();
             _librarian = librarian;
             _libraryBranchId = _librarian.LibraryBranchId;
 
@@ -144,7 +146,18 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
                 return;
 
             SelectedBookCopy.Status = BookCopyStatus.Unavailable;
-            _borrowController.Create(new Borrow(-1, ClientUsername, SelectedBookCopy.Id, DateTime.Now, DateTime.Now.AddDays(7), false));
+
+            Client client = _clientController.GetClientByUsername(ClientUsername);
+            int libraryId = _libraryBranchController.GetLibraryId(_libraryBranchId);
+            int bookCopyLimit = _libraryRulesController.GetBookCopyLimit(libraryId, client.ClientType);
+            if (_borrowController.GetBorrowsCount(ClientUsername) >= bookCopyLimit)
+            {
+                MessageBox.Show("You have already reached book copy borrow limit.", "Error");
+                return;
+            }
+
+            int borrowDurationLimit = _libraryRulesController.GetBorrowDurationLimit(libraryId, client.ClientType);
+            _borrowController.Create(new Borrow(-1, ClientUsername, SelectedBookCopy.Id, DateTime.Now, DateTime.Now.AddDays(borrowDurationLimit), false));
             _bookCopyController.Update(SelectedBookCopy);
             MessageBox.Show($"Client {ClientUsername} has borrowed the book copy.", "Success");
             ResetInputFields();

@@ -54,5 +54,11 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             DeadlineExtensionRequestsWindow deadlineExtensionRequestsWindow = new DeadlineExtensionRequestsWindow(_librarian);
             deadlineExtensionRequestsWindow.Show();
         }
+
+        private void BookReturnsButton_Click(object sender, RoutedEventArgs e)
+        {
+            BookReturnsInformationWindow bookReturnsInformationWindow = new BookReturnsInformationWindow(_librarian);
+            bookReturnsInformationWindow.Show();
+        }
     }
 }

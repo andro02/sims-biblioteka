@@ -76,13 +76,17 @@
     <Compile Include="Core\Books\Storages\DeadlineExtensionRequestStorage.cs" />
     <Compile Include="Core\Libraries\Controllers\LibraryBranchController.cs" />
     <Compile Include="Core\Libraries\Controllers\LibraryController.cs" />
+    <Compile Include="Core\Libraries\Controllers\LibraryRulesController.cs" />
     <Compile Include="Core\Libraries\Controllers\MembershipCardController.cs" />
     <Compile Include="Core\Libraries\DAOs\LibraryBranchDAO.cs" />
     <Compile Include="Core\Libraries\DAOs\LibraryDAO.cs" />
+    <Compile Include="Core\Libraries\DAOs\LibraryRulesDAO.cs" />
     <Compile Include="Core\Libraries\DAOs\MembershipCardDAO.cs" />
     <Compile Include="Core\Libraries\Models\Library.cs" />
     <Compile Include="Core\Libraries\Models\LibraryBranch.cs" />
+    <Compile Include="Core\Libraries\Models\LibraryRules.cs" />
     <Compile Include="Core\Libraries\Storages\LibraryBranchesStorage.cs" />
+    <Compile Include="Core\Libraries\Storages\LibraryRulesStorage.cs" />
     <Compile Include="Core\Libraries\Storages\LibraryStorage.cs" />
     <Compile Include="Core\Users\Controllers\AdminController.cs" />
     <Compile Include="Core\Users\Controllers\ClientController.cs" />
@@ -121,6 +125,9 @@
     </Compile>
     <Compile Include="GUI\Librarians\LibrariansSecondTier\BookBorrowingInformationWindow.xaml.cs">
       <DependentUpon>BookBorrowingInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Librarians\LibrariansSecondTier\BookReturnsInformationWindow.xaml.cs">
+      <DependentUpon>BookReturnsInformationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Librarians\LibrariansSecondTier\DeadlineExtensionRequestsWindow.xaml.cs">
       <DependentUpon>DeadlineExtensionRequestsWindow.xaml</DependentUpon>
@@ -166,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Librarians\LibrariansSecondTier\BookBorrowingInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Librarians\LibrariansSecondTier\BookReturnsInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,6 +244,7 @@
     <None Include="Data\librarians.csv" />
     <None Include="Data\libraries.csv" />
     <None Include="Data\libraryBranches.csv" />
+    <None Include="Data\libraryRules.csv" />
     <None Include="Data\membershipCards.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

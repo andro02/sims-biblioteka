@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Biblioteka.GUI.Librarians.LibrariansSecondTier"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Book Borrowing" Height="800" Width="750">
+        Title="Book Borrowing" Height="650" Width="750">
     <Grid>
         <Label Content="Books:" HorizontalAlignment="Left" Margin="16,40,0,0" VerticalAlignment="Top"/>
         <Label Content="ISBN:" HorizontalAlignment="Left" Margin="99,9,0,0" VerticalAlignment="Top"/>
@@ -21,7 +21,7 @@
                 ItemsSource="{Binding Path=Books, UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding Path=SelectedBook, UpdateSourceTrigger=PropertyChanged}"
                 SelectionChanged="BooksDataGrid_SelectionChanged"
-                AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="22,70,30,514">
+                AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="22,70,30,364">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="100"></DataGridTextColumn>
@@ -44,7 +44,7 @@
                 ItemsSource="{Binding Path=BookCopies, UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding Path=SelectedBookCopy, UpdateSourceTrigger=PropertyChanged}"
                 SelectionChanged="BookCopiesDataGrid_SelectionChanged"
-                AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="22,341,30,243">
+                AutoGenerateColumns="False" IsReadOnly="True" Height="200" Margin="22,341,30,93">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"></DataGridTextColumn>
                 <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="100"></DataGridTextColumn>
@@ -55,8 +55,8 @@
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="105"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Client username:" HorizontalAlignment="Left" Margin="20,570,0,0" VerticalAlignment="Top"/>
-        <TextBox TextChanged="ClientUsernameTextChanged" Name="ClientUsernameTextBox" HorizontalAlignment="Left" Margin="140,576,0,0" TextWrapping="Wrap" Text="{Binding Path=ClientUsername, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <Button IsEnabled="False" Name="GiveAwayButton" IsDefault="True" Click="GiveAwayButton_Click" Content="Give away" Padding="30 5" HorizontalAlignment="Left" Margin="404,572,0,0" VerticalAlignment="Top"/>
+        <Label Content="Client username:" HorizontalAlignment="Left" Margin="20,540,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="ClientUsernameTextChanged" Name="ClientUsernameTextBox" HorizontalAlignment="Left" Margin="140,546,0,0" TextWrapping="Wrap" Text="{Binding Path=ClientUsername, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Button IsEnabled="False" Name="GiveAwayButton" IsDefault="True" Click="GiveAwayButton_Click" Content="Give away" Padding="30 5" HorizontalAlignment="Left" Margin="580,542,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

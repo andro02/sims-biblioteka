@@ -58,6 +58,17 @@ namespace Biblioteka.GUI.Clients
                 MessageBox.Show("Book copy has already been returned.", "Error");
                 return;
             }
+            if (_deadlineExtensionRequestController.DoesDeadlineExtensionRequestExist(SelectedBorrow.Id))
+            {
+                MessageBox.Show("You have already sent a request for deadline extension for chosen borrow.", "Error");
+                return;
+            }
+            if (_borrowController.IsAlreadyExtended(SelectedBorrow))
+            {
+                MessageBox.Show("You have already extended the deadline for the chosen borrow.", "Error");
+                return;
+            }
+
             _deadlineExtensionRequestController.Create(new DeadlineExtensionRequest(-1, SelectedBorrow.Id, DateTime.Now));
             MessageBox.Show("Request sent successfully.", "Success");
         }

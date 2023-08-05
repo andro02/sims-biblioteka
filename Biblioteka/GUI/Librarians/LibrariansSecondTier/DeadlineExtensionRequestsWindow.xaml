@@ -6,20 +6,20 @@
         xmlns:local="clr-namespace:Biblioteka.GUI.Librarians.LibrariansSecondTier"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Deadline extension requests" Height="450" Width="500">
+        Title="Deadline extension requests" Height="330" Width="500">
     <Grid>
         <DataGrid
                 ItemsSource="{Binding Path=DeadlineExtensionRequests, UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding Path=SelectedDeadlineExtensionRequest, UpdateSourceTrigger=PropertyChanged}"
                 SelectionChanged="DeadlineExtensionRequestsDataGrid_SelectionChanged"
-                AutoGenerateColumns="False" IsReadOnly="True" Margin="30,31,30,217">
+                AutoGenerateColumns="False" IsReadOnly="True" Margin="30,31,30,97">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Header="Borrow id" Binding="{Binding BorrowId}" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Header="Sent at" Binding="{Binding SentAt}" Width="200"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button IsEnabled="False" Name="AcceptRequestButton" Padding="20 5" Click="AcceptRequestButton_Click" Content="Accept" HorizontalAlignment="Left" Margin="30,250,0,0" VerticalAlignment="Top"/>
-        <Button IsEnabled="False" Name="RejectRequestButton" Padding="20 5" Click="RejectRequestButton_Click" Content="Reject" HorizontalAlignment="Left" Margin="130,250,0,0" VerticalAlignment="Top"/>
+        <Button IsEnabled="False" Name="AcceptRequestButton" Padding="20 5" Click="AcceptRequestButton_Click" Content="Accept" HorizontalAlignment="Left" Margin="30,230,0,0" VerticalAlignment="Top"/>
+        <Button IsEnabled="False" Name="RejectRequestButton" Padding="20 5" Click="RejectRequestButton_Click" Content="Reject" HorizontalAlignment="Left" Margin="130,230,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:Biblioteka.GUI.Librarians.LibrariansSecondTier"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Librarian Home Window" Height="450" Width="800">
+        Title="Librarian Home Window" Height="450" Width="760">
     <Grid>
         <Button Click="AddNewBookButton_Click" Content="Add new book" HorizontalAlignment="Left" Margin="30,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
         <Button Click="AddNewBookCopyButton_Click" Content="Add new book copy" HorizontalAlignment="Left" Margin="170,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
         <Button Click="BookBorrowingButton_Click" Content="Book borrowing" HorizontalAlignment="Left" Margin="350,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
         <Button Click="ViewDeadlineExtensionRequestsButton_Click" Content="View Deadline extension requests" HorizontalAlignment="Left" Margin="500,30,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
+        <Button Click="BookReturnsButton_Click" Content="Book returns" HorizontalAlignment="Left" Margin="30,90,0,0" Padding="10 5" VerticalAlignment="Top" FontSize="14"/>
     </Grid>
 </Window>

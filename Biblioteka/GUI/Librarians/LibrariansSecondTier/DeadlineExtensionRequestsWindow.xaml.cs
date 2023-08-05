@@ -30,7 +30,6 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
 
         private Librarian _librarian;
         private DeadlineExtensionRequestController _deadlineExtensionRequestController;
-        private BorrowController _borrowController;
         public DeadlineExtensionRequestsWindow(Librarian librarian)
         {
             InitializeComponent();
@@ -38,9 +37,9 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
 
             _deadlineExtensionRequestController = new DeadlineExtensionRequestController();
             _deadlineExtensionRequestController.Subscribe(this);
-            _borrowController = new BorrowController();
+            _librarian = librarian;
 
-            DeadlineExtensionRequests = new ObservableCollection<DeadlineExtensionRequest>(_deadlineExtensionRequestController.GetLibraryBranchDeadlineExtensionRequests(librarian.LibraryBranchId));
+            DeadlineExtensionRequests = new ObservableCollection<DeadlineExtensionRequest>(_deadlineExtensionRequestController.GetLibraryBranchDeadlineExtensionRequests(_librarian.LibraryBranchId));
         }
 
         private void DeadlineExtensionRequestsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -69,8 +68,6 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
         private void UpdateDeadlineExtensionRequestsList()
         {
             DeadlineExtensionRequests.Clear();
-            if (SelectedDeadlineExtensionRequest == null)
-                return;
             foreach (DeadlineExtensionRequest deadlineExtensionRequest in _deadlineExtensionRequestController.GetLibraryBranchDeadlineExtensionRequests(_librarian.LibraryBranchId))
             {
                 DeadlineExtensionRequests.Add(deadlineExtensionRequest);
