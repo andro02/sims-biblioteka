@@ -64,7 +64,7 @@ namespace Biblioteka.Core.Books.Controllers
 
         public void ReturnBookCopy(Borrow borrow)
         {
-            BookCopyController  bookCopyController = new BookCopyController();
+            BookCopyController bookCopyController = new BookCopyController();
 
             borrow.IsReturned = true;
             Update(borrow);
