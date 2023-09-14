@@ -12,6 +12,19 @@ namespace Biblioteka.Core.Libraries.Models
         public int Id { get; set; }
         public int LibraryId { get; set; }
         public string Location { get; set; }
+        public LibraryBranch()
+        {
+            this.Id = -1;
+            this.LibraryId = -1;
+            this.Location = string.Empty;
+        }
+
+        public LibraryBranch(int id, int libraryId, string location)
+        {
+            this.Id = id;
+            this.LibraryId = libraryId;
+            this.Location = location;
+        }
 
         public virtual string[] ToCSV()
         {

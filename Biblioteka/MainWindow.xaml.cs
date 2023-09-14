@@ -117,7 +117,7 @@ namespace Biblioteka
                     }
                 case UserType.Admin:
                     {
-                        AdminHomeWindow adminHomeWindow = new AdminHomeWindow();
+                        AdminHomeWindow adminHomeWindow = new AdminHomeWindow(_userController);
                         adminHomeWindow.Show();
                         break;
                     }

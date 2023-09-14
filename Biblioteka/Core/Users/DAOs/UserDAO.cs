@@ -28,6 +28,11 @@ namespace Biblioteka.Core.Users.DAOs
             NotifyObservers();
         }
 
+        public void Change(User user)
+        {
+            NotifyObservers();
+        }
+
         public void Remove(User user)
         {
             _users.Remove(user);

@@ -1,0 +1,27 @@
+﻿<Window x:Class="Biblioteka.GUI.Admins.LibrariansWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Biblioteka.GUI.Admins"
+        mc:Ignorable="d"
+        Title="Librarians Window" Height="410" Width="500">
+    <Grid>
+        <DataGrid DockPanel.Dock="Bottom"
+            ItemsSource="{Binding Path=Librarians, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding Path=SelectedLibrarian, UpdateSourceTrigger=PropertyChanged}"
+            SelectionChanged="LibrariansDataGrid_SelectionChanged"
+            AutoGenerateColumns="False" IsReadOnly="True"
+            Width="430" Height="250">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="Password" Binding="{Binding Password}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Branch Id" Binding="{Binding LibraryBranchId}" Width="90"></DataGridTextColumn>
+                <DataGridTextColumn Header="Librarian Tier" Binding="{Binding LibrarianTier}" Width="100"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="New" HorizontalAlignment="Left" Margin="79,326,0,0" VerticalAlignment="Top" Height="28" Width="88" Click="AddNewLibrarian_Click"/>
+        <Button Content="Update" IsDefault="True" IsEnabled="False" Name="UpdateButton" HorizontalAlignment="Left" Margin="189,326,0,0" VerticalAlignment="Top" Height="28" Width="88" Click="UpdateButton_Click"/>
+        <Button Content="Delete" IsDefault="True" IsEnabled="False" Name="DeleteButton" HorizontalAlignment="Left" Margin="300,326,0,0" VerticalAlignment="Top" Height="28" Width="88" Click="DeleteButton_Click"/>
+    </Grid>
+</Window>
