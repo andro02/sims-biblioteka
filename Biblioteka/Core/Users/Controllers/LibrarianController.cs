@@ -1,4 +1,5 @@
-﻿using Biblioteka.Core.Users.DAOs;
+﻿using Biblioteka.Core.Books.Models;
+using Biblioteka.Core.Users.DAOs;
 using Biblioteka.Core.Users.Models;
 using Biblioteka.Utilities.Observer;
 using System;
@@ -36,6 +37,10 @@ namespace Biblioteka.Core.Users
         public void Delete(Librarian librarian)
         {
             _librarians.Remove(librarian);
+        }
+        public void Update(Librarian librarian)
+        {
+            _librarians.Change(librarian);
         }
 
         public void Subscribe(IObserver observer)

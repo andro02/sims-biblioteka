@@ -56,7 +56,10 @@ namespace Biblioteka.Core.Users.Controllers
         {
             _users.Remove(user);
         }
-
+        public void Update(User user)
+        {
+            _users.Change(user);
+        }
         public void Subscribe(IObserver observer)
         {
             _users.Subscribe(observer);
