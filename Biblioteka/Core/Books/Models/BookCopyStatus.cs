@@ -9,6 +9,7 @@ namespace Biblioteka.Core.Books.Models
     public enum BookCopyStatus
     {
         Available,
-        Unavailable
+        Unavailable,
+        Reserved
     }
 }

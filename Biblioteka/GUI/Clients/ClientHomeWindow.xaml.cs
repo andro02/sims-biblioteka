@@ -53,9 +53,11 @@ namespace Biblioteka.GUI.Clients
         private LibraryBranchController _libraryBranchController;
         private BookController _bookController;
         private BookCopyController _bookCopyController;
+        private NotificationController _notificationController;
+        private ReservationController _reservationController;
         private Client _client;
 
-        public ClientHomeWindow(Client client)
+        public ClientHomeWindow(Client client, NotificationController notificationController, ReservationController reservationController)
         {
             InitializeComponent();
             DataContext = this;
@@ -63,7 +65,9 @@ namespace Biblioteka.GUI.Clients
             _libraryController = new LibraryController();
             _libraryBranchController = new LibraryBranchController();
             _bookController = new BookController();
-            _bookCopyController = new BookCopyController(); 
+            _bookCopyController = new BookCopyController();
+            _notificationController = notificationController;
+            _reservationController = reservationController;
             _client = client;
 
             Libraries = new ObservableCollection<Library>(_libraryController.GetAllLibraries());
@@ -71,8 +75,16 @@ namespace Biblioteka.GUI.Clients
             Books = new ObservableCollection<Book>();
             BookCopies = new ObservableCollection<BookCopy>();
             CoverTypes = new List<CoverType>(Enum.GetValues(typeof(CoverType)).Cast<CoverType>().ToList());
-
             LoadComboBox();
+
+            foreach (Notification notification in _notificationController.GetAllNotifications().ToList())
+            {
+                if (notification.ClientUsername == _client.Username)
+                {
+                    MessageBox.Show($"Book {notification.ISBN} successfully reserved.", "Success");
+                    _notificationController.Delete(notification);
+                }
+            }
         }
 
         private void LoadComboBox()
@@ -116,6 +128,10 @@ namespace Biblioteka.GUI.Clients
             {
                 BookCopies.Add(bookCopy);
             }
+            if (_bookCopyController.IsBookCopyAvailable(new List<BookCopy>(BookCopies)))
+                ReserveButton.IsEnabled = false;
+            else 
+                ReserveButton.IsEnabled = true;
         }
 
         private void BookCopiesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -168,6 +184,13 @@ namespace Biblioteka.GUI.Clients
         {
             ViewBorrowsWindow viewBorrowsWindow = new ViewBorrowsWindow(_client);
             viewBorrowsWindow.Show();
+        }
+        private void ReservedButton_Click(object sender, RoutedEventArgs e)
+        {
+            Reservation reservation = new Reservation(-1, SelectedBook.ISBN, _client.Username, DateTime.Now, false);
+            _reservationController.Create(reservation);
+            MessageBox.Show("Reservation successfully created!", "Success");
+
         }
     }
 }

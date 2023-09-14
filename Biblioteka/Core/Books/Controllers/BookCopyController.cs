@@ -24,6 +24,18 @@ namespace Biblioteka.Core.BookCopys.Controllers
             return _bookCopies.GetAll();
         }
 
+        public List<BookCopy> GetBookCopiesByISBN(string isbn)
+        {
+            List<BookCopy> bookCopies = new List<BookCopy>();
+            foreach (BookCopy bookCopy in GetAllBookCopies())
+            {
+                if(bookCopy.ISBN == isbn)
+                    bookCopies.Add(bookCopy);
+
+            }
+            return bookCopies;
+        }
+
         public BookCopy? GetBookCopyById(int id)
         {
             return _bookCopies.GetById(id);
@@ -58,6 +70,40 @@ namespace Biblioteka.Core.BookCopys.Controllers
                 }
             }
             return bookCopies;
+        }
+
+        public BookCopy? FindAvailableBookCopy(string isbn)
+        {
+            List<BookCopy> bookCopies = GetBookCopiesByISBN(isbn);
+
+            foreach (BookCopy bookCopy in bookCopies)
+            {
+                if (bookCopy.Status == BookCopyStatus.Available)
+                    return bookCopy;
+            }
+            return null;
+        }
+
+        public BookCopy? FindReservedBookCopy(string isbn)
+        {
+            List<BookCopy> bookCopies = GetBookCopiesByISBN(isbn);
+
+            foreach (BookCopy bookCopy in bookCopies)
+            {
+                if (bookCopy.Status == BookCopyStatus.Reserved)
+                    return bookCopy;
+            }
+            return null;
+        }
+
+        public bool IsBookCopyAvailable(List<BookCopy> bookCopies)
+        {
+            foreach(BookCopy bookCopy in bookCopies)
+            {
+                if (bookCopy.Status == BookCopyStatus.Available)
+                    return true;
+            }
+            return false;
         }
 
         public void Create(BookCopy bookCopy)

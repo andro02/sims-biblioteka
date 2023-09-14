@@ -51,10 +51,11 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
         private MembershipCardController _membershipCardController;
         private LibraryBranchController _libraryBranchController;
         private LibraryRulesController _libraryRulesController;
+        private ReservationController _reservationController;
         private Librarian _librarian;
         private int _libraryBranchId;
 
-        public BookBorrowingInformationWindow(Librarian librarian)
+        public BookBorrowingInformationWindow(Librarian librarian, ReservationController reservationController)
         {
             InitializeComponent();
             DataContext = this;
@@ -68,6 +69,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             _membershipCardController = new MembershipCardController();
             _libraryBranchController = new LibraryBranchController();
             _libraryRulesController = new LibraryRulesController();
+            _reservationController = reservationController;
             _librarian = librarian;
             _libraryBranchId = _librarian.LibraryBranchId;
 
@@ -145,8 +147,6 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
             if (!IsBorrowValid())
                 return;
 
-            SelectedBookCopy.Status = BookCopyStatus.Unavailable;
-
             Client client = _clientController.GetClientByUsername(ClientUsername);
             int libraryId = _libraryBranchController.GetLibraryId(_libraryBranchId);
             int bookCopyLimit = _libraryRulesController.GetBookCopyLimit(libraryId, client.ClientType);
@@ -155,6 +155,22 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
                 MessageBox.Show("You have already reached book copy borrow limit.", "Error");
                 return;
             }
+
+            if (SelectedBookCopy.Status == BookCopyStatus.Reserved)
+            {
+                Reservation? reservation = _reservationController.FindActiveReservation(client.Username, SelectedBookCopy.ISBN);
+                if (reservation != null)
+                {
+                    _reservationController.Delete(reservation);
+                }
+                else
+                {
+                    MessageBox.Show("Chosen book is currently reserved.", "Error");
+                    return;
+                }
+            }
+
+            SelectedBookCopy.Status = BookCopyStatus.Unavailable;
 
             int borrowDurationLimit = _libraryRulesController.GetBorrowDurationLimit(libraryId, client.ClientType);
             _borrowController.Create(new Borrow(-1, ClientUsername, SelectedBookCopy.Id, DateTime.Now, DateTime.Now.AddDays(borrowDurationLimit), false));

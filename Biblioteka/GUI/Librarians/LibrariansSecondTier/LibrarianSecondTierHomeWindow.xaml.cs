@@ -1,4 +1,5 @@
-﻿using Biblioteka.Core.Users.Controllers;
+﻿using Biblioteka.Core.Books.Controllers;
+using Biblioteka.Core.Users.Controllers;
 using Biblioteka.Core.Users.Models;
 using System;
 using System.Collections.Generic;
@@ -21,13 +22,15 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
     /// </summary>
     public partial class LibrarianSecondTierHomeWindow : Window
     {
+        private ReservationController _reservationController;
         private Librarian _librarian;
 
-        public LibrarianSecondTierHomeWindow(Librarian librarian)
+        public LibrarianSecondTierHomeWindow(Librarian librarian, ReservationController reservationController)
         {
             InitializeComponent();
             DataContext = this;
 
+            _reservationController = reservationController;
             _librarian = librarian;
         }
 
@@ -45,7 +48,7 @@ namespace Biblioteka.GUI.Librarians.LibrariansSecondTier
 
         private void BookBorrowingButton_Click(object sender, RoutedEventArgs e)
         {
-            BookBorrowingInformationWindow bookBorrowingInformationWindow = new BookBorrowingInformationWindow(_librarian);
+            BookBorrowingInformationWindow bookBorrowingInformationWindow = new BookBorrowingInformationWindow(_librarian, _reservationController);
             bookBorrowingInformationWindow.Show();
         }
 

@@ -1,4 +1,5 @@
-﻿using Biblioteka.Core.Books.Controllers;
+﻿using Biblioteka.Core.BookCopys.Controllers;
+using Biblioteka.Core.Books.Controllers;
 using Biblioteka.Core.Books.Models;
 using Biblioteka.Core.Users;
 using Biblioteka.Core.Users.Controllers;
@@ -35,6 +36,9 @@ namespace Biblioteka
         private UserController _userController;
         private LibrarianController _librarianController;
         private ClientController _clientController;
+        private ReservationController _reservationController;
+        private BookCopyController _bookCopyController;
+        private NotificationController _notificationController;
 
         public MainWindow()
         {
@@ -48,6 +52,42 @@ namespace Biblioteka
             _userController = new UserController();
             _librarianController = new LibrarianController();
             _clientController = new ClientController();
+            _reservationController = new ReservationController();
+            _bookCopyController = new BookCopyController();
+            _notificationController = new NotificationController();
+            
+            List<Reservation> activeReservations = _reservationController.GetReservations(true);
+            foreach(Reservation reservation in activeReservations.ToList())
+            {
+                BookCopy? bookCopy = _bookCopyController.FindReservedBookCopy(reservation.ISBN);
+                if (reservation.ReservedAt.AddDays(2).CompareTo(DateTime.Now) < 0)
+                {
+                    _reservationController.Delete(reservation);
+
+                    if (bookCopy != null)
+                    {
+                        bookCopy.Status = BookCopyStatus.Available;
+                        _bookCopyController.Update(bookCopy);
+                    }
+                }
+            }
+
+            List<Reservation> inactiveReservations = _reservationController.GetReservations(false);
+            foreach (Reservation reservation in inactiveReservations)
+            {
+                BookCopy? bookCopy = _bookCopyController.FindAvailableBookCopy(reservation.ISBN);
+                if (bookCopy != null)
+                {
+                    bookCopy.Status = BookCopyStatus.Reserved;
+                    _bookCopyController.Update(bookCopy);
+
+                    reservation.IsActive = true;
+                    reservation.ReservedAt = DateTime.Now;
+                    _reservationController.Update(reservation);
+
+                    _notificationController.Create(new Notification(-1, reservation.ClientUsername, reservation.ISBN));
+                }
+            }
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -70,7 +110,7 @@ namespace Biblioteka
                         }
                         else
                         {
-                            LibrarianSecondTierHomeWindow librarianSecondTierHomeWindow = new LibrarianSecondTierHomeWindow(librarian);
+                            LibrarianSecondTierHomeWindow librarianSecondTierHomeWindow = new LibrarianSecondTierHomeWindow(librarian, _reservationController);
                             librarianSecondTierHomeWindow.Show();
                         }
                         break;
@@ -84,7 +124,7 @@ namespace Biblioteka
                 case UserType.Client:
                     {
                         Client client = _clientController.GetClientByUsername(Username);
-                        ClientHomeWindow clientHomeWindow = new ClientHomeWindow(client);
+                        ClientHomeWindow clientHomeWindow = new ClientHomeWindow(client, _notificationController, _reservationController);
                         clientHomeWindow.Show();
                         break;
                     }

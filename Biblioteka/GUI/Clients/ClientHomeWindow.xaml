@@ -84,5 +84,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Click="ViewBorrowsButton_Click" Content="View borrows" Padding="20 5" HorizontalAlignment="Left" Margin="50,550,0,0" VerticalAlignment="Top"/>
+        <Button Click="ReservedButton_Click" Name="ReserveButton" IsEnabled="False" Content="Reserve" Padding="20 5" HorizontalAlignment="Left" Margin="200,550,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
