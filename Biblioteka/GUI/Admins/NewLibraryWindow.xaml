@@ -1,0 +1,14 @@
+﻿<Window x:Class="Biblioteka.GUI.Admins.NewLibraryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Biblioteka.GUI.Admins"
+        mc:Ignorable="d"
+        Title="New Library Window" Height="200" Width="350">
+    <Grid>
+        <Label Content="Library name:" HorizontalAlignment="Left" Margin="54,47,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="NameTextBox" Margin="157,47,0,0" TextWrapping="Wrap" Text="{Binding Path=Library.Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" Height="26"/>
+        <Button Content="Add new library" HorizontalAlignment="Center" Margin="0,112,0,0" VerticalAlignment="Top" Height="27" Width="104" Click="AddLibraryButton_Click"/>
+    </Grid>
+</Window>

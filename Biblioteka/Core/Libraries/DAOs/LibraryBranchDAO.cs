@@ -31,6 +31,7 @@ namespace Biblioteka.Core.Libraries.DAOs
 
         public void Add(LibraryBranch libraryBranch)
         {
+            libraryBranch.Id = NextId();
             _libraryBranches.Add(libraryBranch);
             _storage.Save(_libraryBranches);
             NotifyObservers();
